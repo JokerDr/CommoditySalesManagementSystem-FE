@@ -6,7 +6,7 @@ import { Layout } from "antd";
 import { hot } from 'react-hot-loader';
 import { EHomeSider } from '@utils/ENUM';
 import { AppContent } from '@shared/Content';
-import homeSiderRoutes from '@routers/home/siderRoutes';
+import homeSiderRoutes from '@routers/app/home/siderRoutes';
 
 
 @hot(module)

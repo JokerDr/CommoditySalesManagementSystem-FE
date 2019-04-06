@@ -1,19 +1,19 @@
 import * as React from 'react'
 import { hot } from 'react-hot-loader';
 import { observer, inject } from "mobx-react";
-import * as style from "@styles/logo.scss";
 import { withRouter } from 'react-router-dom'
 import { Layout, Menu } from 'antd';
 import { renderRoutes } from 'react-router-config';
 import { appRouterCongfig } from '@routers/app';
 import { getEKV, ERootMap } from "@utils/ENUM";
-import Login from '@components/Login/Login';
-const { Header} = Layout;
+import style from '@styles/app.scss'
+const { Header } = Layout;
 
 interface IProps {
   globalStore?: IGlobalStore.GlobalStore
   routerStore?: IRouterStore.RouterStore
 }
+
 
 @inject("globalStore", "routerStore")
 @hot(module)
@@ -22,8 +22,22 @@ export class App extends React.Component<IProps> {
   constructor(props: any) {
     super(props);
   }
+
+  // 跳转到主页，并将用户信息清除
+  private toLogout(): void {
+    this.props.globalStore.setAuth = null;
+    this.props.routerStore.push('/')
+  }
+
+  private handleLogOut(): void{
+    this.props.globalStore.auth
+      ? this.toLogout()
+      : this.handelClick('/login') 
+  }
+  
+
   private handelClick(path: string): void {
-    return this.props.routerStore.push(path)
+    this.props.routerStore.push(path)
   }
   private MenuItems(): React.ReactNode[] {
     let index = 0;
@@ -31,6 +45,7 @@ export class App extends React.Component<IProps> {
       return (
         <Menu.Item
           key={String(index++)}
+          className={style.appHeaderMenuItem}
           onClick={() => this.handelClick(elem.key)}
         >
           {elem.val}
@@ -38,29 +53,34 @@ export class App extends React.Component<IProps> {
       );
     });
   }
+
+  private logMenuItem(): React.ReactNode{
+    return (
+      <Menu.Item
+        key={String("log")}
+        className={style.appHeaderMenuItem}
+        onClick={() => this.handleLogOut()}
+      >
+        {this.props.globalStore.auth !== null ? "登出" : "登入"}
+      </Menu.Item>
+    );
+  }
   render(): React.ReactNode {
     return (
-      <Layout>
-        <Header style={{ zIndex: 1, width: "100%" }}>
-          <div className={style.logo} />
+      <Layout className={style.app}>
+        <Header className={style.appHeader}>
+          <div className={style.appLogo} />
           <Menu
             theme="dark"
             mode="horizontal"
             defaultSelectedKeys={["2"]}
-            style={{ lineHeight: "64px" }}
+            className={style.appHeaderMenu}
           >
             {...this.MenuItems()}
-            <Menu.Item
-              key={String('login')}
-              onClick={() => this.handelClick('/login')}
-            >
-              {this.props.globalStore.auth}
-            </Menu.Item>
+            {this.logMenuItem()}
           </Menu>
         </Header>
-        <Layout>
-          {renderRoutes(appRouterCongfig)}
-        </Layout>
+        {renderRoutes(appRouterCongfig)}
       </Layout>
     );
   }

@@ -1,4 +1,6 @@
 
+// import {axios} from 'axios'
+
 // new Promise((resolve,reject)=>{
 //     resolve(0) 
 // }).then(
@@ -98,11 +100,15 @@
 // console.log(typeof Object.create({}).toString);
 // console.log(typeof a.toString);
 
-const obj = {
-    a: 1,
-    fn:()=>{
-        console.log(this);
-        console.log(this.a);
-    }
-}
-obj.fn()
+// const obj = {
+//     a: 1,
+//     fn:()=>{
+//         console.log(this);
+//         console.log(this.a);
+//     }
+// }
+// obj.fn()
+
+axios.post('yourdomain/login', login_form).then(resource => {
+    console.log(resource);
+})

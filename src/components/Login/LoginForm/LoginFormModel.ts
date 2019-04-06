@@ -3,17 +3,17 @@ import { observable, action, runInAction, computed } from 'mobx';
 import { ILoginParams, authInfor, ILoginReturn } from '@services/api/auth';
 
 
-export class LoginModel extends componentModel {
-    @observable private auth: ILoginReturn = {};
+export class LoginFormModel extends componentModel {
+    @observable private auth: ILoginReturn = null;
     constructor() {
         super()
     }
     @action
-    public login = async (employeeNum: string, pwd: string, code: string) => {
+    public login = async (employeeNum: string, pwd: string) => {
         const params: ILoginParams = {
             employeeNum: employeeNum,
             pwd: pwd,
-            code: this.isCode(code) ? code : ''
+            // code: this.isCode(code) ? code : ''
         };
         try {
             const data = await authInfor(params);

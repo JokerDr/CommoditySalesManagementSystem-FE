@@ -1,16 +1,18 @@
 import { RouteConfig } from "react-router-config";
 import { exact } from 'prop-types';
 import { asyncComponent } from '@utils/asyncComponent';
-import { getEKV } from '@utils/ENUM';
-import { EAppRouterMap } from '@utils/ENUM/eRootMap';
-const Home = asyncComponent(import("@views/Home/Home"));
 
+const Home = asyncComponent(import("@views/Home/Home"));
+const Login = asyncComponent(import("@components/Login"))
 
 export const appRouterCongfig: RouteConfig[] | undefined = [
   {
     path: '/',
     component: Home,
     exact: true
+  },{
+    path: '/login',
+    component: Login
   }
 ]
 // const appRouterCongfig: RouteConfig[] | undefined = ()=>{

@@ -1,0 +1,40 @@
+.app {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom:0;
+    &-header{
+       z-index: 1;
+       width: 100%;
+       &-menu {
+         line-height: 64px;
+         &-item {
+          
+         }
+       }
+    }
+    &-sider {
+      background: '#fff';
+      &-menu {
+        height: '100%';
+        border-right: 0;
+      }
+    }
+    &-content {
+      background: '#fff';
+      padding: 24;
+      margin: 0;
+    }
+    &-footer {
+      text-align: center;
+    }
+    &-logo {
+       width: 120px;
+       height: 31px;
+       background: rgba(255, 255, 255, .2);
+       margin: 16px 24px 16px 0;
+       float: left;
+    }
+}

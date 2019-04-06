@@ -2,7 +2,7 @@ import * as React from "react";
 import { ComponentExt } from '@utils/componentExt/componentExt'
 import { Layout, Menu, Icon } from 'antd';
 import { getEKV } from '@utils/ENUM';
-import * as style from '@styles/appSider.scss'
+import style from '@styles/app.scss'
 const { Sider } = Layout;
 
 interface ISiderMenu{
@@ -11,7 +11,7 @@ interface ISiderMenu{
 
 }
 
-export class SiderMenu<T extends ISiderMenu> extends ComponentExt<T> {
+export class SiderMenu<T> extends ComponentExt<T, ISiderMenu> {
   protected isIconsArr: [] = null;
   protected ESider: any = null;
   private isClosed: boolean = false

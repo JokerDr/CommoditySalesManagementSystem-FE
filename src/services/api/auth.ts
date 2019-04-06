@@ -3,7 +3,7 @@ import http from '@services/http'
 export interface ILoginParams {
   employeeNum: string
   pwd: string
-  code: string
+  // code: string
 }
 
 

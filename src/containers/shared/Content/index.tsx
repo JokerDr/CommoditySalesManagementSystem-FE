@@ -2,18 +2,18 @@ import * as React from "react";
 import { ComponentExt } from '@utils/componentExt/componentExt'
 import { Layout, Menu, Icon } from 'antd';
 import { renderRoutes } from 'react-router-config';
-import * as style  from '@styles/appContent.scss'
+import style  from '@styles/app.scss'
 const { Content, Footer } = Layout;
 
 interface IAppContent {
     RoutesConf: any
 }
 
-export class AppContent<T extends IAppContent> extends ComponentExt<T> {
+export class AppContent<T> extends ComponentExt<T,IAppContent> {
     protected EContent: any = null;
     constructor(param?: any){
       super(param);
-      this.EContent = this.props.RoutesConf;
+      this.EContent = this.props.RoutesConf
     }
     render(): React.ReactNode {
       return (
@@ -23,8 +23,8 @@ export class AppContent<T extends IAppContent> extends ComponentExt<T> {
         >
           {renderRoutes(this.EContent)}
         </Content>
-        <Footer style={{ textAlign: "center" }}>
-            Ant Design ©2018 Created by Ant UED
+        <Footer className={style.appFooter}>
+            CSMS ©2019 Created by Student YuanQinglong
         </Footer>
       </Layout>
       );
