@@ -1,5 +1,4 @@
 import { RouterStore as RouterStoreModel } from "./index";
-import { RouterProps, RouteProps } from "react-router";
 
 //将这个命名空间作为全局变量的形式来访问
 export as namespace IRouterStore

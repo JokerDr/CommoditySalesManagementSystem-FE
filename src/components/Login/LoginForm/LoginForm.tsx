@@ -18,18 +18,29 @@ interface IUserFormProps extends FormComponentProps {
 @inject("globalStore", "routerStore")
 @observer
 class LoginForm<T extends LoginFormModel> extends ComponentExt<T, IUserFormProps> {
+
   /**
    * name
    */
   public toRegister() {
+    this
     this.props.routerStore.push('/register');
+  }
+
+  /**
+   * toforgotPassword
+   */
+  public toforgotPassword() {
+    this.props.routerStore.push("/forgotPassword");
   }
 
   public handleSubmit = (e: any) => {
     e.preventDefault();
     this.props.form.validateFields((err, val: ILoginParams) => {
       if (!err) {
-        this.model.login(val.employeeNum, val.pwd, val.captcha).then((elem)=>{
+        console.log(this.model, this);
+        this.model.login(val.employeeNum, val.pwd).then((elem)=>{
+          debugger;
           const auth = this.model.Auth;
           if(auth !== null) {
             this.props.globalStore.setAuth(auth)
@@ -91,11 +102,11 @@ class LoginForm<T extends LoginFormModel> extends ComponentExt<T, IUserFormProps
               <Checkbox>Remember me</Checkbox>
             )       
           }
-            <a className={style.loginFormForgot} href="javascript:void(0)" onClick={()=>this.toRegister()}>Forgot password</a>
+            <a className={style.loginFormForgot} href="javascript:void(0)" onClick={()=>this.toforgotPassword()}>Forgot password</a>
             <Button type="primary" htmlType="submit" className={style.loginFormButton}>
               Log in
             </Button>
-              Or <a href="">register now!</a>
+              Or <a href="javascript:void(0)" onClick={()=>this.toRegister()}>register now!</a>
         </Form.Item>
       </Form>
     );

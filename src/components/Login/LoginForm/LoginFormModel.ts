@@ -9,15 +9,16 @@ export class LoginFormModel extends componentModel {
         super()
     }
     @action
-    public login = async (employeeNum: string, pwd: string, captcha: string) => {
+    public login = async (employeeNum: string, pwd: string, captcha?: string) => {
         const params: ILoginParams = {
             employeeNum: employeeNum,
             pwd: pwd,
-            captcha: this.isCaptcha(captcha) ? captcha : ''
+            // captcha: this.isCaptcha(captcha) ? captcha : ''
         };
         try {
             const data = await login(params);
             runInAction(() => {
+                console.log(this.auth);
                 this.auth = data;
             })
         } catch (err) {

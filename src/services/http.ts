@@ -51,9 +51,9 @@ function transformData(data: any) {
  function method ( method: string) {
     const options: any = {};
     return async (api: string, params?: any): Promise<any> => {
-      let url :string = getServerHOST + api;
+      let url :string = getServerHOST() + api;
       if( method === 'GET'){
-        url += url.includes('?') 
+        url += url.includes('?')
           ? '&'
           : '?' + transformData(params.data);
       } else {
@@ -92,7 +92,7 @@ function transformData(data: any) {
             errMsg: `sorry, contentType(${contentType}) is not supported, \n 无法解析该content-type，请查看列表支持项`
           })) //数据格式解析失败
       }).then( res =>{
-        return res.parseData;
+        return res.parseData;  //返回服务端的数据
       }
       ).catch( error =>{
         // 401,402...
@@ -101,7 +101,7 @@ function transformData(data: any) {
           message.error("用户认证失败! 请登录重试...");
           let authTimer: any = null;
           window.clearTimeout(authTimer)
-          authTimer = setTimeout(()=>location.replace('/login'),300)
+          authTimer = setTimeout(()=>location.replace('/login'), 300)
           return;
         }
         throw new Error(

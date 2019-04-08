@@ -1,7 +1,6 @@
 import * as H from "history";
 
 
-export class componentModel {
-
+export abstract class componentModel {
     
 }
