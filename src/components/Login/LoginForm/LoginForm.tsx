@@ -6,7 +6,7 @@ import { LoginFormModel } from './LoginFormModel';
 import { observer, inject } from 'mobx-react';
 import { hot } from 'react-hot-loader';
 import style from '@styles/logIn.scss';
-import { ILoginParams } from '@services/api/auth';
+import { ILoginParams } from '@services/api/auth/login';
 
 interface IUserFormProps extends FormComponentProps {
   globalStore?: IGlobalStore.GlobalStore
@@ -21,11 +21,15 @@ class LoginForm<T extends LoginFormModel> extends ComponentExt<T, IUserFormProps
   /**
    * name
    */
+  public toRegister() {
+    this.props.routerStore.push('/register');
+  }
+
   public handleSubmit = (e: any) => {
     e.preventDefault();
     this.props.form.validateFields((err, val: ILoginParams) => {
       if (!err) {
-        this.model.login(val.employeeNum, val.pwd).then((elem)=>{
+        this.model.login(val.employeeNum, val.pwd, val.captcha).then((elem)=>{
           const auth = this.model.Auth;
           if(auth !== null) {
             this.props.globalStore.setAuth(auth)
@@ -85,9 +89,9 @@ class LoginForm<T extends LoginFormModel> extends ComponentExt<T, IUserFormProps
               initialValue: true,
             })(
               <Checkbox>Remember me</Checkbox>
-            )
+            )       
           }
-            <a className={style.loginFormForgot} href="">Forgot password</a>
+            <a className={style.loginFormForgot} href="javascript:void(0)" onClick={()=>this.toRegister()}>Forgot password</a>
             <Button type="primary" htmlType="submit" className={style.loginFormButton}>
               Log in
             </Button>

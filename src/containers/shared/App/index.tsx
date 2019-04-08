@@ -5,9 +5,10 @@ import { withRouter } from 'react-router-dom'
 import { Layout, Menu } from 'antd';
 import { renderRoutes } from 'react-router-config';
 import { appRouterCongfig } from '@routers/app';
-import { getEKV, ERootMap } from "@utils/ENUM";
+import { getEKV, EMenu } from "@utils/ENUM";
 import style from '@styles/app.scss'
 const { Header } = Layout;
+const {ERootMenu} = EMenu
 
 interface IProps {
   globalStore?: IGlobalStore.GlobalStore
@@ -41,7 +42,7 @@ export class App extends React.Component<IProps> {
   }
   private MenuItems(): React.ReactNode[] {
     let index = 0;
-    return getEKV(ERootMap.EAppMap).map((elem: any) => {
+    return getEKV(ERootMenu).map((elem: any) => {
       return (
         <Menu.Item
           key={String(index++)}
@@ -73,7 +74,7 @@ export class App extends React.Component<IProps> {
           <Menu
             theme="dark"
             mode="horizontal"
-            defaultSelectedKeys={["2"]}
+            defaultSelectedKeys={["0"]}
             className={style.appHeaderMenu}
           >
             {...this.MenuItems()}

@@ -1,7 +1,9 @@
 import { message } from "antd";
 import { getCookie } from "@utils/index";
 import { COOKIE_KEYS } from "@constant/index";
-import { getContentTypeHandle, TOKENERROR} from './EHttp'
+import { EHttp } from '@utils/ENUM'
+
+const { getServerHOST, getContentTypeHandle, TOKENERROR } = EHttp;;
 
 // const DEFAULTCONFIG = { baseURL: process.env.BASEURL};
 interface IFetchStream {
@@ -48,7 +50,8 @@ function transformData(data: any) {
 // 生成请求方式
  function method ( method: string) {
     const options: any = {};
-    return async (url: string, params?: any): Promise<any> => {
+    return async (api: string, params?: any): Promise<any> => {
+      let url :string = getServerHOST + api;
       if( method === 'GET'){
         url += url.includes('?') 
           ? '&'

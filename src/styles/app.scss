@@ -11,7 +11,8 @@
        &-menu {
          line-height: 64px;
          &-item {
-          
+          min-width: 100px;
+          text-align: center;
          }
        }
     }
@@ -20,6 +21,9 @@
       &-menu {
         height: '100%';
         border-right: 0;
+        &-item {
+          min-width: 100px;
+        }
       }
     }
     &-content {

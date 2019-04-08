@@ -36,4 +36,4 @@ export class RouterStore {
              name.length && (this.queryParams[name] = value);
            });
          }
-       }
+}

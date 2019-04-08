@@ -4,8 +4,9 @@ enum EContentTypeHandle {
     ['application/xhtml+xm'] = 'text',
     ['application/octet-stream'] = 'blob',
     ['multipart/form-data'] = 'formData'
-    
+
 }
+
 
 /*
 return string || undefined
@@ -15,10 +16,6 @@ const getContentTypeHandle = (contentType: any): any =>{
 }
 
 
-const TOKENERROR = [401, 402, 403];
-
 export {
-    EContentTypeHandle,
-    getContentTypeHandle,
-    TOKENERROR
+    getContentTypeHandle
 }

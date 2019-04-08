@@ -1,9 +1,9 @@
 
-import * as ERootMap from "./ERootMap";
-import * as EHomeSider from './EHomeSider'
+import EMenu from './EMenu'
+import EHttp from './EHttp'
+import ERoutes from './ERoutes'
 
-
-const getEKV = (EParam: any): {}[]=>{
+const getEKV = (EParam: any): {key: string, val: string}[]=>{
     return Reflect.ownKeys(EParam).map((elem: any) => {
         return {
             key: elem,
@@ -15,6 +15,7 @@ const getEKV = (EParam: any): {}[]=>{
 
 export {
     getEKV,
-    ERootMap,
-    EHomeSider
+    EMenu,
+    EHttp,
+    ERoutes
 }

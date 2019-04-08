@@ -1,14 +1,18 @@
 import * as React from "react";
 import { ComponentExt } from '@utils/componentExt/componentExt'
-import { Layout, Menu, Icon } from 'antd';
+import { Layout } from 'antd';
 import { renderRoutes } from 'react-router-config';
 import style  from '@styles/app.scss'
+import { observer } from 'mobx-react';
+import { hot } from 'react-hot-loader';
 const { Content, Footer } = Layout;
 
-interface IAppContent {
+export interface IAppContent {
     RoutesConf: any
 }
 
+@hot(module)
+@observer
 export class AppContent<T> extends ComponentExt<T,IAppContent> {
     protected EContent: any = null;
     constructor(param?: any){
