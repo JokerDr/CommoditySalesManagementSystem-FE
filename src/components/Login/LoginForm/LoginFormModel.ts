@@ -9,7 +9,7 @@ export class LoginFormModel extends componentModel {
         super()
     }
     @action
-    public login = async (employeeNum: string, pwd: string, captcha?: string) => {
+    public async login(employeeNum: string, pwd: string, captcha?: string){
         const params: ILoginParams = {
             employeeNum: employeeNum,
             pwd: pwd,

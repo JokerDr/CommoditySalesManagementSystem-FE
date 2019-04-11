@@ -17,13 +17,12 @@ interface IUserFormProps extends FormComponentProps {
 @hot(module)
 @inject("globalStore", "routerStore")
 @observer
-class LoginForm<T extends LoginFormModel> extends ComponentExt<T, IUserFormProps> {
+class LoginForm extends ComponentExt<LoginFormModel, IUserFormProps> {
 
   /**
    * name
    */
   public toRegister() {
-    this
     this.props.routerStore.push('/register');
   }
 
@@ -39,19 +38,20 @@ class LoginForm<T extends LoginFormModel> extends ComponentExt<T, IUserFormProps
     this.props.form.validateFields((err, val: ILoginParams) => {
       if (!err) {
         console.log(this.model, this);
-        this.model.login(val.employeeNum, val.pwd).then((elem)=>{
+        this.model.login(val.employeeNum, val.pwd).then(elem => {
           debugger;
           const auth = this.model.Auth;
-          if(auth !== null) {
-            this.props.globalStore.setAuth(auth)
-              .then(()=>{
+          if (auth !== null) {
+            this.props.globalStore
+              .setAuth(auth)
+              .then(() => {
                 this.success();
-              }).catch((err) => {
+              })
+              .catch(err => {
                 throw new Error(err);
               });
-            
           }
-        })
+        });
       }
     });
   }
