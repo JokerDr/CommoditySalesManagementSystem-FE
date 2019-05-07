@@ -5,6 +5,7 @@
 import { extend } from 'umi-request';
 import { notification } from 'antd';
 import router from 'umi/router';
+import { getToken } from '@/utils/tokenHandle';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -31,7 +32,6 @@ const errorHandler = error => {
   const { response = {} } = error;
   const errortext = codeMessage[response.status] || response.statusText;
   const { status, url } = response;
-
   if (status === 401) {
     notification.error({
       message: '未登录或登录已过期，请重新登录。',
@@ -66,6 +66,9 @@ const errorHandler = error => {
  */
 const request = extend({
   errorHandler, // 默认错误处理
+  headers: {
+    authorization: `Bearer ${getToken()}` || null,
+  },
   credentials: 'include', // 默认请求是否带上cookie
 });
 

@@ -8,27 +8,21 @@ const FooterView = () => (
     <GlobalFooter
       links={[
         {
-          key: 'Pro 首页',
-          title: 'Pro 首页',
-          href: 'https://pro.ant.design',
-          blankTarget: true,
-        },
-        {
-          key: 'github',
+          key: 'my blog',
           title: <Icon type="github" />,
-          href: 'https://github.com/ant-design/ant-design-pro',
+          href: 'https://blog.yuanqinglong.cn/',
           blankTarget: true,
         },
         {
-          key: 'Ant Design',
-          title: 'Ant Design',
-          href: 'https://ant.design',
+          key: 'my github',
+          title: <Icon type="github" />,
+          href: 'https://github.com/JokerDr/CommoditySalesManagementSystem/',
           blankTarget: true,
         },
       ]}
       copyright={
         <Fragment>
-          Copyright <Icon type="copyright" /> 2018 蚂蚁金服体验技术部出品
+          Copyright <Icon type="copyright" /> 2019 数据科学与技术学院 袁庆龙
         </Fragment>
       }
     />

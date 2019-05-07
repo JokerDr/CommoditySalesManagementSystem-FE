@@ -1,9 +1,10 @@
 // https://umijs.org/config/
 import os from 'os';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import slash from 'slash2';
 import pageRoutes from './router.config';
 import webpackPlugin from './plugin.config';
 import defaultSettings from '../src/defaultSettings';
-import slash from 'slash2';
 
 const { pwa, primaryColor } = defaultSettings;
 const { APP_TYPE, TEST } = process.env;
@@ -59,6 +60,19 @@ if (APP_TYPE === 'site') {
 }
 
 export default {
+  history: 'browser',
+  base: '',
+  publicPath: './',
+  proxy: {
+    '/api/': {
+      // 匹配所有以/api/为开头的接口
+      target: 'http://localhost:7001/api/', // 后端服务器地址
+      changeOrigin: true,
+      pathRewrite: {
+        '^/api': '',
+      }, // 因为我们项目的接口前面并没有api 所以直接去掉
+    },
+  },
   // add for transfer to umi
   plugins,
   define: {

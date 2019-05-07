@@ -5,6 +5,8 @@ export default {
   'form.submit': '提交',
   'form.save': '保存',
   'form.email.placeholder': '邮箱',
+  'form.name.placeholder': '姓名',
+  'form.address.placeholder': '通讯地址',
   'form.password.placeholder': '至少6位密码，区分大小写',
   'form.confirm-password.placeholder': '确认密码',
   'form.phone-number.placeholder': '手机号',
